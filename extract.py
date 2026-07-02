@@ -178,8 +178,10 @@ def main():
     dossier_arch = os.path.join(ICI, "archives")
     os.makedirs(dossier_arch, exist_ok=True)
     chemin_arch = os.path.join(dossier_arch, f"cost-carte-{semaine}.html")
+    # La copie est DANS archives/ : le lien vers la liste doit rester dans ce dossier
+    html_arch = html.replace('href="archives/index.html"', 'href="index.html"')
     with open(chemin_arch, "w", encoding="utf-8") as fh:
-        fh.write(html)
+        fh.write(html_arch)
     print(f"Archive-> {chemin_arch}")
     generer_index_archives(dossier_arch)
     print("Terminé.")
